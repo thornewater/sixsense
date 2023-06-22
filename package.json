@@ -28,6 +28,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.0.2",
     "@nestjs/typeorm": "^10.0.0",
+    "argon2": "^0.30.3",
     "glob": "^10.2.7",
     "helmet": "^7.0.0",
     "mysql2": "^3.4.0",
