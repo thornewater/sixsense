@@ -21,7 +21,7 @@ async function bootstrap() {
     .setTitle('Sixsense 1st Project')
     .setDescription('API description')
     .setVersion('1.0')
-    .addTag('swagger')
+    .addTag('Users')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

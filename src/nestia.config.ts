@@ -7,7 +7,7 @@ const config: INestiaConfig = {
     security: {
       bearer: {
         type: 'apiKey',
-        name: 'Authorization',
+        name: 'WonJong',
         in: 'header',
       },
     },
