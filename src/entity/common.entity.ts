@@ -1,23 +1,17 @@
-import {
-  CreateDateColumn,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export abstract class CommonEntity {
   @PrimaryGeneratedColumn('increment', { type: 'int' })
   id: number;
 
-  @CreateDateColumn({
-    name: 'created_at',
-    type: 'timestamp',
-  })
+  @Column({ name: 'created_at', type: 'timestamp', default: () => 'NOW()' })
   createdAt: Date;
 
-  @UpdateDateColumn({
+  @Column({
     name: 'updated_at',
     type: 'timestamp',
     nullable: true,
+    onUpdate: 'CURRENT_TIMESTAMP',
   })
   updatedAt: Date;
 }
