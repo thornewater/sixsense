@@ -1,24 +1,15 @@
-import { readFileSync } from 'fs';
-import * as path from 'path';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import * as xss from 'xss-clean';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { winstonConfig } from './logger/winston.config';
-import { WinstonModule } from 'nest-winston';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    logger: WinstonModule.createLogger(winstonConfig),
-  });
-
+  const app = await NestFactory.create(AppModule);
   app.enableCors({
     methods: 'POST,GET,PUT,PATCH,DELETE,OPTIONS',
   });
-
   app.use(xss());
-
   app.use(
     helmet.hsts({
       maxAge: 60 * 60 * 24 * 365,
@@ -26,9 +17,15 @@ async function bootstrap() {
       preload: true,
     }),
   );
-
+  const config = new DocumentBuilder()
+    .setTitle('Sixsense 1st Project')
+    .setDescription('API description')
+    .setVersion('1.0')
+    .addTag('Users')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
   await app.listen(process.env.MAIN_PORT || 3000);
-
   console.log('Application is running on PORT: ', process.env.MAIN_PORT);
 }
 bootstrap();
