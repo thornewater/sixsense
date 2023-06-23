@@ -2,6 +2,8 @@ import typia from 'typia';
 
 export const checkCreateUserDto = typia.createIs<CreateUserDto>();
 
+export type LoginReqDto = Pick<CreateUserDto, 'account' | 'password'>;
+
 /**
  * 유저의 회원가입정보를 담고있는 DTO
  */

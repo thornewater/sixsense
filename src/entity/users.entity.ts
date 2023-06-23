@@ -1,6 +1,6 @@
 import { Column, Entity, Unique } from 'typeorm';
 import { CommonEntity } from './common.entity';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { CreateUserDto } from 'src/users/dto/user.dto';
 
 @Entity({ name: 'users' })
 @Unique(['account'])

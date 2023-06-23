@@ -1,12 +1,10 @@
-import { readFileSync } from 'fs';
-import * as path from 'path';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import * as xss from 'xss-clean';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { winstonConfig } from './logger/winston.config';
 import { WinstonModule } from 'nest-winston';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -18,6 +16,8 @@ async function bootstrap() {
   });
 
   app.use(xss());
+
+  app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
   app.use(
     helmet.hsts({

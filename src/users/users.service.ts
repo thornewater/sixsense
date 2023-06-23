@@ -3,7 +3,7 @@ import {
   BadRequest,
   BadRequestMessage,
 } from 'src/kernel/exception/bad.request';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from './dto/user.dto';
 import { UsersRepository } from './users.repository';
 import * as argon2 from 'argon2';
 import { LoggerService } from 'src/logger/logger.service';
