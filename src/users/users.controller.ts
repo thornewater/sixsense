@@ -1,6 +1,6 @@
 import { Controller, HttpStatus } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from './dto/user.dto';
 import { TypedBody, TypedRoute } from '@nestia/core';
 import { LoggerService } from 'src/logger/logger.service';
 import { StatusResponse, ResultStatus } from 'src/kernel/model/api.response';
@@ -24,6 +24,7 @@ export class UsersController {
    * @returns status 201, message가 success일때만 성공
    *
    * @throw 400 account duplicate
+   *
    * @throw 500, sql error 발생시 실패
    *
    */
