@@ -3,7 +3,7 @@ import {
   BadRequest,
   BadRequestMessage,
 } from 'src/kernel/exception/bad.request';
-import { CreateUserDto } from './dto/user.dto';
+import { CreateUserReqDto } from './dto/user.dto';
 import { UsersRepository } from './users.repository';
 import * as argon2 from 'argon2';
 import { LoggerService } from 'src/logger/logger.service';
@@ -15,7 +15,7 @@ export class UsersService {
     private readonly logger: LoggerService,
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserReqDto) {
     await this.checkDuplicateAccount(createUserDto.account);
 
     createUserDto.password = await argon2.hash(createUserDto.password, {
