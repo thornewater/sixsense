@@ -19,13 +19,12 @@ export class Users extends CommonEntity {
   /**
    * 유저의 계정
    * 영문 및 숫자 4~12글자이여합니다
-   * @type string
+   *
    * @pattern ^[a-z0-9]{4,12}$
-   * @minLength 1
-   * @maxLength 50
    */
   @Column({ type: 'varchar', length: 50 })
   account: string;
+
   /**
    * 유저의 비밀번호
    * 영문,숫자 및 특수문자가 포함되어야하며 8~16글자여야합니다.

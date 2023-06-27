@@ -5,7 +5,7 @@ export abstract class CommonEntity {
   id: number;
 
   @Column({ name: 'created_at', type: 'timestamp', default: () => 'NOW()' })
-  createdAt: Date;
+  createdAt: string;
 
   @Column({
     name: 'updated_at',
@@ -13,5 +13,5 @@ export abstract class CommonEntity {
     nullable: true,
     onUpdate: 'CURRENT_TIMESTAMP',
   })
-  updatedAt: Date;
+  updatedAt: string | null;
 }
