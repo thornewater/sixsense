@@ -1,7 +1,8 @@
-import { Users } from 'src/entity/users.entity';
+import { Users } from 'src/kernel/entity/users.entity';
 import typia from 'typia';
 
-export const checkCreateUserDto = typia.createIs<Users>();
+export const checkCreateUserDto = typia.createAssertEquals<CreateUserReqDto>();
+export const checkLoginReqDto = typia.createAssertEquals<LoginReqDto>();
 
 export type CreateUserReqDto = Pick<
   Users,

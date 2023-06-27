@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import core from '@nestia/core';
 import { Response } from 'express';
 import { ResultStatus, StatusResponse } from 'src/kernel/model/api.response';
-import { LoginReqDto } from 'src/users/dto/user.dto';
+import { LoginReqDto, checkLoginReqDto } from 'src/users/dto/user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -32,6 +32,8 @@ export class AuthController {
     // passthrough: Express의 Response 객체를 받아오고, NestJS의 자동 응답 처리 기능 활용
     @Res({ passthrough: true }) res: Response,
   ) {
+    checkLoginReqDto(loginReqDto);
+
     const accessToken = await this.authService.login(loginReqDto);
 
     res.cookie('accessToken', accessToken.token, {
