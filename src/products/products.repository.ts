@@ -76,7 +76,7 @@ export class ProductsRepository {
     });
   }
 
-  async findOneByProductId(productId: number): Promise<productRaw> {
+  async findByProductIdWithImage(productId: number): Promise<productRaw> {
     const product = await this.productsRepository
       .createQueryBuilder('products')
       .select([
@@ -96,5 +96,11 @@ export class ProductsRepository {
       .getRawOne();
 
     return product;
+  }
+
+  async findOneByProductId(productId: number) {
+    return await this.productsRepository.findOne({
+      where: { id: productId },
+    });
   }
 }
