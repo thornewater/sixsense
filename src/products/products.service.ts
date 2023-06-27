@@ -42,7 +42,9 @@ export class ProductsService {
   }
 
   async findOne(productId: number): Promise<Product> {
-    const product = await this.productsRepository.findOneByProductId(productId);
+    const product = await this.productsRepository.findByProductIdWithImage(
+      productId,
+    );
 
     if (!product) {
       this.logger.error(
