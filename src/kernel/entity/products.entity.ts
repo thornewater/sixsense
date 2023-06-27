@@ -3,6 +3,7 @@ import { CommonEntity } from './common.entity';
 import { Incenses } from './incenses.entity';
 import { Categories } from './categories.entity';
 import { ProductImages } from './productImage.entity';
+import { Carts } from './carts.entity';
 
 @Entity({ name: 'products' })
 export class Products extends CommonEntity {
@@ -47,4 +48,7 @@ export class Products extends CommonEntity {
 
   @OneToMany(() => ProductImages, (productImages) => productImages.product)
   productImages: ProductImages[];
+
+  @OneToMany(() => Carts, (cart) => cart.productId)
+  carts: Carts[];
 }

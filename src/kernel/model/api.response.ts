@@ -1,12 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
 
-export class StatusResponse {
-  constructor(
-    public readonly status: HttpStatus,
-    public readonly data: ResultStatus,
-  ) {}
-}
-
 export interface Response<T extends object> {
   /**
    * statusCode
@@ -34,6 +27,13 @@ export function success<T extends object>(
     message: 'success',
     response,
   };
+}
+
+export class StatusResponse {
+  constructor(
+    public readonly code: HttpStatus,
+    public readonly data: ResultStatus,
+  ) {}
 }
 
 export enum ResultStatus {

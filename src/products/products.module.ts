@@ -11,5 +11,6 @@ import { ProductImages } from 'src/kernel/entity/productImage.entity';
   imports: [TypeOrmModule.forFeature([Products, ProductImages]), LoggerModule],
   controllers: [ProductsController],
   providers: [ProductsService, ProductsRepository],
+  exports: [ProductsRepository],
 })
 export class ProductsModule {}
