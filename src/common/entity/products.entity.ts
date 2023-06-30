@@ -4,21 +4,46 @@ import { Incenses } from './incenses.entity';
 import { Categories } from './categories.entity';
 import { ProductImages } from './productImage.entity';
 import { Carts } from './carts.entity';
+import { OrderItems } from './orderItems.entity';
 
 @Entity({ name: 'products' })
 export class Products extends CommonEntity {
+  /**
+   * 제품 이름.
+   *
+   * @maxLength 50
+   */
   @Column({ type: 'varchar', length: 50 })
   name: string;
 
+  /**
+   * 제품 가격.
+   */
   @Column({ type: 'decimal', precision: 10, scale: 3 })
   price: number;
 
+  /**
+   * 제품 설명.
+   *
+   * @maxLength 200
+   */
   @Column({ type: 'varchar', length: 200 })
   description: string;
 
+  /**
+   * 제품 재고.
+   *
+   * @type uint
+   */
   @Column({ type: 'int' })
   stock: number;
 
+  /**
+   * 제품의 상세 이미지 URL.
+   * Nullable로, 해당 값이 없을 수도 있습니다.
+   *
+   * @maxLength 2000
+   */
   @Column({
     name: 'detail_image',
     type: 'varchar',
@@ -27,6 +52,10 @@ export class Products extends CommonEntity {
   })
   detailImage: string | null;
 
+  /**
+   * 제품의 할인율.
+   * 기본값은 0
+   */
   @Column({
     name: 'discount_rate',
     type: 'decimal',
@@ -51,4 +80,7 @@ export class Products extends CommonEntity {
 
   @OneToMany(() => Carts, (cart) => cart.productId)
   carts: Carts[];
+
+  @OneToMany(() => OrderItems, (orderItem) => orderItem.productId)
+  orderItems: OrderItems[];
 }

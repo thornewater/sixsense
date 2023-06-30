@@ -8,12 +8,12 @@ import {
   validateNewCartDto,
 } from './dto/cart.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { RequestWithUser } from 'src/Common/model/api.request';
+import { RequestWithUser } from 'src/common/model/api.request';
 import {
   StatusResponse,
   ResultStatus,
   success,
-} from 'src/Common/model/api.response';
+} from 'src/common/model/api.response';
 
 @Controller('carts')
 export class CartsController {
@@ -33,9 +33,9 @@ export class CartsController {
    *
    * @returns code 201 - message가 'success'인 경우에만 API 호출이 성공함을 의미
    *
-   * @throw statusCode 400 - 클라이언트에서 제공한 productId가 데이터베이스에 존재하지 않을 경우
+   * @throw  400 - 클라이언트에서 제공한 productId가 데이터베이스에 존재하지 않을 경우
    *
-   * @throw statusCode 500 - SQL 에러가 발생한 경우
+   * @throw  500 - SQL 에러가 발생한 경우
    *
    */
   @UseGuards(AuthGuard('jwt'))
@@ -67,7 +67,7 @@ export class CartsController {
    *
    * @returns code 200 - response에 조회된 상품 데이터가 포함됨, response에 빈배열이 가는경우 상품 데이터가 없음
    *
-   * @throw statusCode 500 -, SQL 에러가 발생한 경우
+   * @throw 500 -, SQL 에러가 발생한 경우
    *
    */
   @UseGuards(AuthGuard('jwt'))

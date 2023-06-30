@@ -1,8 +1,11 @@
 import { Controller, HttpStatus } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import core from '@nestia/core';
-import { ProductFilterDto } from './dto/product.list.dto';
-import { success } from 'src/Common/model/api.response';
+import {
+  ProductFilterDto,
+  checkProductFilterDto,
+} from './dto/product.list.dto';
+import { success } from 'src/common/model/api.response';
 import { Product, Products } from './dto/response.type';
 
 @Controller('products')
@@ -12,10 +15,11 @@ export class ProductsController {
   /**
    * 상품리스트페이지 API
    *
-   * 상품의 리스트페이지보내주며, 필터링을 가능하게해준다.
+   * API는 상품 리스트 페이지를 반환하고, 사용자가 요청하는 필터링 옵션을 제공
    *
-   * 필터링의 종류:
-   * categoryId, 가격순정렬 2가지 가능
+   * 필터링 옵션:
+   * 1. 'categoryId': 특정 카테고리에 속하는 상품만 반환합니다.
+   * 2. '가격순 정렬': 상품을 가격에 따라 오름차순 또는 내림차순으로 정렬합니다.
    *
    * limit,offset은 반드시 보내줘야한다.
    *
@@ -24,16 +28,20 @@ export class ProductsController {
    * @tag products
    *
    * @param ProductFilterDto  상품의 필터링 및 limit,offset
+   *
    * @param limit  한번에 가져올 상품의 갯수
+   *
    * @param offset  가져올 상품의 offset
    *
-   * @returns statusCode 200일때 data를 보내준다.
+   * @returns code 200 - message가 'success'인 경우에만 API 호출이 성공함을 의미.
    *
-   * @throw 500, sql error 발생시 실패
+   * @throw  500, sql error 발생시 실패
    *
    */
   @core.TypedRoute.Get()
   async findProductList(@core.TypedQuery() productFilter: ProductFilterDto) {
+    checkProductFilterDto(productFilter);
+
     const result: Products = await this.productsService.findProductList(
       productFilter,
     );
@@ -52,11 +60,11 @@ export class ProductsController {
    *
    * @param productId  productId를 반드시 보내줘야한다.
    *
-   * @returns statusCode 200일때 data를 보내준다.
+   * @returns code 200 - response에 조회된 상품 데이터가 포함됨, response에 빈배열이 가는경우 상품 데이터가 없음
    *
-   * @throw 400, productId가 DB에 없는경우 에러발생
+   * @throw  400 - productId가 DB에 없는경우 에러발생
    *
-   * @throw 500, sql error 발생시 실패
+   * @throw  500 - sql error 발생시 실패
    *
    */
   @core.TypedRoute.Get(':productId')

@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import * as xss from 'xss-clean';
-import { winstonConfig } from './Common/logger/winston.config';
+import { winstonConfig } from './common/logger/winston.config';
 import { WinstonModule } from 'nest-winston';
 import * as cookieParser from 'cookie-parser';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -31,7 +31,5 @@ async function bootstrap() {
   );
 
   await app.listen(process.env.MAIN_PORT || 3000);
-
-  console.log('Application is running on PORT: ', process.env.MAIN_PORT);
 }
 bootstrap();

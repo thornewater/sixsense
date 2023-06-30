@@ -5,7 +5,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import {
   UnAuthorized,
   UnAuthorizedMessage,
-} from 'src/Common/exception/unauthorized.exception';
+} from 'src/common/exception/unauthorized.exception';
 import { UsersRepository } from 'src/users/users.repository';
 
 @Injectable()
