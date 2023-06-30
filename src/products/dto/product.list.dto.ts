@@ -12,6 +12,9 @@ typia.customValidators.insert('sortList')('string')(() => {
   };
 });
 
+export const checkProductFilterDto =
+  typia.createAssertEquals<ProductFilterDto>();
+
 export interface ProductFilterDto {
   /**
    * 상품의 categoryId에 따라 상품 필터링시 필요

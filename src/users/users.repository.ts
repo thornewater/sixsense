@@ -5,8 +5,8 @@ import { Repository } from 'typeorm';
 import {
   InternalServerError,
   InternalServerMessage,
-} from 'src/Common/exception/internal.server';
-import { Users } from 'src/Common/entity/users.entity';
+} from 'src/common/exception/internal.server';
+import { Users } from 'src/common/entity/users.entity';
 
 @Injectable()
 export class UsersRepository {
@@ -16,19 +16,11 @@ export class UsersRepository {
   ) {}
 
   async findOneUserByAccount(account: string): Promise<Users | null> {
-    try {
-      return this.userRepository.findOneBy({ account });
-    } catch (error) {
-      this.handleError();
-    }
+    return await this.userRepository.findOneBy({ account });
   }
 
   async findOneUserById(userId: number): Promise<Users | null> {
-    try {
-      return this.userRepository.findOne({ where: { id: userId } });
-    } catch (error) {
-      this.handleError();
-    }
+    return await this.userRepository.findOne({ where: { id: userId } });
   }
 
   async createUser(createUserDto: CreateUserReqDto): Promise<void> {
@@ -41,7 +33,7 @@ export class UsersRepository {
     }
   }
 
-  private handleError(): never {
+  private handleError() {
     throw new InternalServerError(InternalServerMessage.DATABASE_ERROR);
   }
 }

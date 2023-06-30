@@ -2,6 +2,7 @@ import { Column, Entity, OneToMany, Unique } from 'typeorm';
 import { CommonEntity } from './common.entity';
 import { CreateUserReqDto } from 'src/users/dto/user.dto';
 import { Carts } from './carts.entity';
+import { Orders } from './order.entity';
 
 @Entity({ name: 'users' })
 @Unique(['account'])
@@ -85,6 +86,9 @@ export class Users extends CommonEntity {
 
   @OneToMany(() => Carts, (cart) => cart.userId)
   carts: Carts[];
+
+  @OneToMany(() => Orders, (order) => order.userId)
+  orders: Orders[];
 
   static toUsersEntity(userCreateDto: CreateUserReqDto): Users {
     const user: Users = new Users();

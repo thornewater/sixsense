@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ProductFilterDto } from './dto/product.list.dto';
-import { Products } from 'src/Common/entity/products.entity';
-import { ProductImages } from 'src/Common/entity/productImage.entity';
+import { Products } from 'src/common/entity/products.entity';
+import { ProductImages } from 'src/common/entity/productImage.entity';
 
 import { productRaw } from './dto/response.type';
 

@@ -6,7 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt/passport.jwt.strategy';
-import { LoggerModule } from 'src/Common/logger/logger.module';
+import { LoggerModule } from 'src/common/logger/logger.module';
 
 @Module({
   imports: [

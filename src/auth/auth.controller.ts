@@ -2,7 +2,7 @@ import { Controller, HttpStatus, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import core from '@nestia/core';
 import { Response } from 'express';
-import { ResultStatus, StatusResponse } from 'src/Common/model/api.response';
+import { ResultStatus, StatusResponse } from 'src/common/model/api.response';
 import { LoginReqDto, checkLoginReqDto } from 'src/users/dto/user.dto';
 
 @Controller('auth')
@@ -24,9 +24,9 @@ export class AuthController {
    *
    * @returns code 200 - 로그인에 성공하면 'success' 메시지와 함께 액세스 토큰을 담은 쿠키를 반환합니다.
    *
-   * @throw statusCode 401 - 데이터베이스에 존재하지 않는 계정이거나 비밀번호가 일치하지 않는 경우 발생합니다.
+   * @throw  401 - 데이터베이스에 존재하지 않는 계정이거나 비밀번호가 일치하지 않는 경우 발생합니다.
    *
-   * @throw statusCode 500 - SQL 에러가 발생한 경우
+   * @throw  500 - SQL 에러가 발생한 경우
    *
    */
   @core.TypedRoute.Post()

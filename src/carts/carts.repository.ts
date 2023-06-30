@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
-import { Carts } from 'src/Common/entity/carts.entity';
+import { Carts } from 'src/common/entity/carts.entity';
 import { EntityManager, Repository, In } from 'typeorm';
 import { CartRaw } from './dto/response.type';
 import { NewCartDto } from './dto/cart.dto';
@@ -92,5 +92,15 @@ export class CartsRepository {
       { id: cartId, userId },
       { quantity: quantity },
     );
+  }
+
+  async findByIds(cartIds: number[]) {
+    return this.cartsRepository.find({
+      where: { id: In(cartIds) },
+    });
+  }
+
+  async remove(cartIds: number[]) {
+    await this.cartsRepository.delete({ id: In(cartIds) });
   }
 }
