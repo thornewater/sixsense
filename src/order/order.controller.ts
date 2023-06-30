@@ -22,6 +22,8 @@ export class OrderController {
    *
    * @param createOrderReqDto  주문시에 필요한 정보
    *
+   * @param cookies  쿠키에 저장된 토큰. 이 토큰이 없으면 API 호출이 불가능
+   *
    * @returns code 201 - message가 'success'인 경우에만 API 호출이 성공함을 의미
    *
    * @throw  400 - 사용자의 포인트(userPoint)가 부족하거나, 제공된 productId나 cartId가 존재하지 않는 경우에 발생하는 에러

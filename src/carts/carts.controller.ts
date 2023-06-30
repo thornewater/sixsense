@@ -22,7 +22,7 @@ export class CartsController {
   /**
    * 장바구니 생성 API
    *
-   * 회원이 상품 페이지에서 장바구니 추가 버튼을 클릭하면, 해당 상품이 사용자의 장바구니에 추가됩니다.
+   * 회원이 상품 페이지에서 장바구니 추가 버튼을 클릭하면, 해당 상품이 사용자의 장바구니에 추가
    * 기존의 장바구니에 해당 productId가 존재하는 클라이언트가 요청한 quantity로 변경
    *
    * @summary 장바구니 생성 API
@@ -30,6 +30,8 @@ export class CartsController {
    * @tag carts
    *
    * @param createCartDto  장바구니생성시 필요한 데이터
+   *
+   * @param cookies  쿠키에 저장된 토큰. 이 토큰이 없으면 API 호출이 불가능
    *
    * @returns code 201 - message가 'success'인 경우에만 API 호출이 성공함을 의미
    *
@@ -96,9 +98,9 @@ export class CartsController {
    *
    * @returns code 200 - 상품이 성공적으로 삭제되는경우, response에 조회된 상품 데이터가 포함됨
    *
-   * @throws statusCode 404 - cartId,userId이슈로 인하여 장바구니 데이터가 삭제 되지 않는 경우
+   * @throws  404 - cartId,userId이슈로 인하여 장바구니 데이터가 삭제 되지 않는 경우
    *
-   * @throws statusCode 500 - SQL 에러가 발생한 경우
+   * @throws  500 - SQL 에러가 발생한 경우
    *
    */
   @UseGuards(AuthGuard('jwt'))
@@ -130,7 +132,7 @@ export class CartsController {
    *
    * @returns code 200 - 상품이 성공적으로 수량이 변경 되는 경우, response에 조회된 상품 데이터가 포함됨
    *
-   * @throw statusCode 500 - SQL 에러가 발생한 경우
+   * @throw  500 - SQL 에러가 발생한 경우
    *
    */
   @UseGuards(AuthGuard('jwt'))
