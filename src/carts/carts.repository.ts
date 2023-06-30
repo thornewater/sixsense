@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
-import { Carts } from 'src/kernel/entity/carts.entity';
+import { Carts } from 'src/Common/entity/carts.entity';
 import { EntityManager, Repository, In } from 'typeorm';
 import { CartRaw } from './dto/response.type';
 import { NewCartDto } from './dto/cart.dto';

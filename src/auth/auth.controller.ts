@@ -2,7 +2,7 @@ import { Controller, HttpStatus, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import core from '@nestia/core';
 import { Response } from 'express';
-import { ResultStatus, StatusResponse } from 'src/kernel/model/api.response';
+import { ResultStatus, StatusResponse } from 'src/Common/model/api.response';
 import { LoginReqDto, checkLoginReqDto } from 'src/users/dto/user.dto';
 
 @Controller('auth')
@@ -10,20 +10,23 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   /**
-   * 고객의 로그인 API
+   * 회원의 로그인 API
+   *
+   * API는 사용자가 계정과 비밀번호를 통해 로그인하는 기능을 제공합니다.
+   * 로그인 성공 시, 쿠키를 통해 액세스 토큰을 반환합니다.
    *
    * @summary 고객의 로그인 API
    *
    * @tag users
    *
-   * @param loginReqDto  고객의 회원가입시 필요한 정보
-   * account 와 password가 필요. 각각 string타입이며 세부 정규표현식은 스키마참고
+   * @param loginReqDto  로그인 요청 시 필요한 사용자 계정과 비밀번호 정보.
+   * 계정과 비밀번호는 모두 문자열 형태이며, 세부적인 정규표현식은 스키마를 참고하시기 바랍니다.
    *
-   * @returns 200, message가 success일때만 성공 하며 쿠키로 accessToken전달
+   * @returns code 200 - 로그인에 성공하면 'success' 메시지와 함께 액세스 토큰을 담은 쿠키를 반환합니다.
    *
-   * @throw 401 유저 account 및 password db에 존재하지않거나 다른경우
+   * @throw statusCode 401 - 데이터베이스에 존재하지 않는 계정이거나 비밀번호가 일치하지 않는 경우 발생합니다.
    *
-   * @throw 500, sql error 발생시 실패
+   * @throw statusCode 500 - SQL 에러가 발생한 경우
    *
    */
   @core.TypedRoute.Post()

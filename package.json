@@ -34,6 +34,7 @@
     "cookie-parser": "^1.4.6",
     "glob": "^10.2.7",
     "helmet": "^7.0.0",
+    "moment-timezone": "^0.5.43",
     "mysql2": "^3.4.0",
     "nest-winston": "^1.9.2",
     "nestjs-pino": "^3.3.0",

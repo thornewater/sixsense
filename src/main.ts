@@ -2,18 +2,21 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import * as xss from 'xss-clean';
-import { winstonConfig } from './logger/winston.config';
+import { winstonConfig } from './Common/logger/winston.config';
 import { WinstonModule } from 'nest-winston';
 import * as cookieParser from 'cookie-parser';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     logger: WinstonModule.createLogger(winstonConfig),
   });
 
   app.enableCors({
     methods: 'POST,GET,PUT,PATCH,DELETE,OPTIONS',
   });
+
+  app.set('trust proxy', true);
 
   app.use(xss());
 

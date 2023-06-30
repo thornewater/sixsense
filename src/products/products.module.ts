@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ProductsController } from './products.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LoggerModule } from 'src/logger/logger.module';
 import { ProductsRepository } from './products.repository';
-import { Products } from 'src/kernel/entity/products.entity';
-import { ProductImages } from 'src/kernel/entity/productImage.entity';
+import { Products } from 'src/Common/entity/products.entity';
+import { ProductImages } from 'src/Common/entity/productImage.entity';
+import { LoggerModule } from 'src/Common/logger/logger.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Products, ProductImages]), LoggerModule],

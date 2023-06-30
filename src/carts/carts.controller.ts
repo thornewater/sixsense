@@ -8,12 +8,12 @@ import {
   validateNewCartDto,
 } from './dto/cart.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { RequestWithUser } from 'src/kernel/model/api.request';
+import { RequestWithUser } from 'src/Common/model/api.request';
 import {
   StatusResponse,
   ResultStatus,
   success,
-} from 'src/kernel/model/api.response';
+} from 'src/Common/model/api.response';
 
 @Controller('carts')
 export class CartsController {

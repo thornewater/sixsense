@@ -1,4 +1,4 @@
-import { Users } from 'src/kernel/entity/users.entity';
+import { Users } from 'src/Common/entity/users.entity';
 import typia from 'typia';
 
 export const checkCreateUserDto = typia.createAssertEquals<CreateUserReqDto>();

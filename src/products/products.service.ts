@@ -5,8 +5,8 @@ import { Product } from './dto/response.type';
 import {
   BadRequest,
   BadRequestMessage,
-} from 'src/kernel/exception/bad.request';
-import { LoggerService } from 'src/logger/logger.service';
+} from 'src/Common/exception/bad.request';
+import { LoggerService } from 'src/Common/logger/logger.service';
 
 @Injectable()
 export class ProductsService {

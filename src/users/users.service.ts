@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import {
   BadRequest,
   BadRequestMessage,
-} from 'src/kernel/exception/bad.request';
+} from 'src/Common/exception/bad.request';
 import { CreateUserReqDto } from './dto/user.dto';
 import { UsersRepository } from './users.repository';
 import * as argon2 from 'argon2';
-import { LoggerService } from 'src/logger/logger.service';
+import { LoggerService } from 'src/Common/logger/logger.service';
 
 @Injectable()
 export class UsersService {

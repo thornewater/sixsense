@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common';
 import {
   UnAuthorized,
   UnAuthorizedMessage,
-} from 'src/kernel/exception/unauthorized.exception';
-import { LoggerService } from 'src/logger/logger.service';
+} from 'src/Common/exception/unauthorized.exception';
 import { UsersRepository } from 'src/users/users.repository';
 import * as argon2 from 'argon2';
 import { Payload } from './jwt/tokenPayload.interface';
 import { JwtService } from '@nestjs/jwt';
 import { LoginReqDto } from 'src/users/dto/user.dto';
+import { LoggerService } from 'src/Common/logger/logger.service';
 
 @Injectable()
 export class AuthService {

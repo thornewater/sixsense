@@ -2,7 +2,7 @@ import { Controller, HttpStatus } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import core from '@nestia/core';
 import { ProductFilterDto } from './dto/product.list.dto';
-import { success } from 'src/kernel/model/api.response';
+import { success } from 'src/Common/model/api.response';
 import { Product, Products } from './dto/response.type';
 
 @Controller('products')

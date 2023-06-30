@@ -1,4 +1,4 @@
-import { Carts } from 'src/kernel/entity/carts.entity';
+import { Carts } from 'src/Common/entity/carts.entity';
 import typia from 'typia';
 
 type RenameKey<T, OldKey extends keyof T, NewKey extends string> = Pick<
