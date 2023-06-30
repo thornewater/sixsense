@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LoggerModule } from 'src/logger/logger.module';
 import { UsersRepository } from './users.repository';
-import { Users } from 'src/kernel/entity/users.entity';
+import { Users } from 'src/Common/entity/users.entity';
+import { LoggerModule } from 'src/Common/logger/logger.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Users]), LoggerModule],

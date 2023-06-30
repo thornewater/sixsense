@@ -5,8 +5,8 @@ import { Repository } from 'typeorm';
 import {
   InternalServerError,
   InternalServerMessage,
-} from 'src/kernel/exception/internal.server';
-import { Users } from 'src/kernel/entity/users.entity';
+} from 'src/Common/exception/internal.server';
+import { Users } from 'src/Common/entity/users.entity';
 
 @Injectable()
 export class UsersRepository {

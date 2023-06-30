@@ -2,8 +2,8 @@ import { Controller, HttpStatus } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserReqDto, checkCreateUserDto } from './dto/user.dto';
 import { TypedBody, TypedRoute } from '@nestia/core';
-import { LoggerService } from 'src/logger/logger.service';
-import { StatusResponse, ResultStatus } from 'src/kernel/model/api.response';
+import { StatusResponse, ResultStatus } from 'src/Common/model/api.response';
+import { LoggerService } from 'src/Common/logger/logger.service';
 
 @Controller('users')
 export class UsersController {

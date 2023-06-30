@@ -1,6 +1,7 @@
 import { Injectable, Inject, Scope } from '@nestjs/common';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
+import * as moment from 'moment-timezone';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class LoggerService {
@@ -9,22 +10,29 @@ export class LoggerService {
   ) {}
 
   log(message: string, context = '') {
-    this.logger.info(message, { context });
+    this.logger.info(`TIME:${this.nowTime()} message:${message}`, { context });
   }
 
   error(message: string, trace = '', context = '') {
-    this.logger.error(message, { trace, context });
+    this.logger.error(`TIME:${this.nowTime()} message:${message}`, {
+      trace,
+      context,
+    });
   }
 
   warn(message: string, context = '') {
-    this.logger.warn(message, { context });
+    this.logger.warn(`TIME:${Date.now()} message:${message}`, { context });
   }
 
   debug(message: string, context = '') {
-    this.logger.debug(message, { context });
+    this.logger.debug(`TIME:${Date.now()} message:${message}`, { context });
   }
 
   verbose(message: string, context = '') {
-    this.logger.verbose(message, { context });
+    this.logger.verbose(`TIME:${Date.now()} message:${message}`, { context });
+  }
+
+  nowTime() {
+    return moment().tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss');
   }
 }
