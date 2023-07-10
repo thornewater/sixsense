@@ -2,9 +2,11 @@ import { utilities as nestWinstonModuleUtilities } from 'nest-winston';
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 
+const env = process.env.NODE_ENV;
+
 const dailyOptions = (level: string) => {
   return {
-    level: level,
+    level: env === 'production' ? 'http' : 'silly',
     filename: `application-%DATE%-${level}.log`,
     datePattern: 'YYYY-MM-DD-HH',
     zippedArchive: true,
@@ -20,7 +22,9 @@ export const winstonConfig = {
       format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.colorize(),
-        winston.format.prettyPrint(),
+        env === 'production'
+          ? winston.format.simple()
+          : winston.format.prettyPrint(),
         nestWinstonModuleUtilities.format.nestLike('Sixsense', {
           prettyPrint: true,
         }),
@@ -28,9 +32,6 @@ export const winstonConfig = {
     }),
     new DailyRotateFile(dailyOptions('info')),
     new DailyRotateFile(dailyOptions('error')),
-    new DailyRotateFile(dailyOptions('verbose')),
     new DailyRotateFile(dailyOptions('warn')),
-    new DailyRotateFile(dailyOptions('debug')),
-    new DailyRotateFile(dailyOptions('silly')),
   ],
 };
