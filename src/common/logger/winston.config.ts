@@ -8,7 +8,7 @@ const dailyOptions = (level: string) => {
   return {
     level: env === 'production' ? 'http' : 'silly',
     filename: `application-%DATE%-${level}.log`,
-    datePattern: 'YYYY-MM-DD-HH',
+    datePattern: 'YYYY-MM-DD',
     zippedArchive: true,
     maxSize: '20m',
     maxFiles: '14d',
