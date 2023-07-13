@@ -40,11 +40,16 @@ export class ProductsRepository {
       .offset(productFilter.offset);
 
     if (productFilter.categoryId) {
-      query.andWhere('products.category = :categoryId', {
-        categoryId: productFilter.categoryId,
+      const categoryIds = productFilter.categoryId
+        .split(',')
+        .map((id) => parseInt(id, 10));
+
+      query.andWhere('products.category In (:categoryId)', {
+        categoryId: categoryIds,
       });
     }
-
+    const result = await query.getMany();
+    console.log(result);
     return query.getMany();
   }
 

@@ -19,9 +19,9 @@ export interface ProductFilterDto {
   /**
    * 상품의 categoryId에 따라 상품 필터링시 필요
    *
-   * @type uint
+   * @type string
    */
-  categoryId?: number;
+  categoryId?: string;
 
   /**
    * 최저가 및 최고가 순으로 정렬시 필요
@@ -42,12 +42,12 @@ export interface ProductFilterDto {
    *
    * @type int
    */
-  limit: number;
+  limit?: number;
 
   /**
    *  페이지네이션시 필요
    *
    * @type int
    */
-  offset: number;
+  offset?: number;
 }

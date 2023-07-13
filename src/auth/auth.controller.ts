@@ -40,10 +40,10 @@ export class AuthController {
     const accessToken = await this.authService.login(loginReqDto);
 
     res.cookie('accessToken', accessToken.token, {
-      httpOnly: true,
+      //httpOnly: true,
       signed: true,
       maxAge: 24 * 60 * 60 * 1000,
-      sameSite: 'lax',
+      //secure: true,
     });
 
     return new StatusResponse(HttpStatus.OK, ResultStatus.SUCCESS);

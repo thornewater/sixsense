@@ -30,6 +30,6 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(process.env.MAIN_PORT || 3000);
+  await app.listen(process.env.MAIN_PORT || 3001);
 }
 bootstrap();
