@@ -1,4 +1,4 @@
-import { Controller, HttpStatus } from '@nestjs/common';
+import { Controller, HttpStatus, Req, Res, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserReqDto } from './dto/user.dto';
 import { TypedBody, TypedRoute } from '@nestia/core';
@@ -7,10 +7,7 @@ import { LoggerService } from 'src/common/logger/logger.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(
-    private readonly usersService: UsersService,
-    private readonly logger: LoggerService,
-  ) {}
+  constructor(private readonly usersService: UsersService) {}
 
   /**
    * 고객의 회원가입 API

@@ -1,5 +1,3 @@
-import typia from 'typia';
-
 interface CartItem {
   /**
    * 카트의 PK값

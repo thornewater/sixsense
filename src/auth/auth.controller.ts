@@ -1,9 +1,11 @@
-import { Controller, HttpStatus, Res } from '@nestjs/common';
+import { Controller, HttpStatus, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import core from '@nestia/core';
 import { Response } from 'express';
 import { ResultStatus, StatusResponse } from 'src/common/model/api.response';
 import { LoginReqDto } from 'src/users/dto/user.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { RequestWithUser } from 'src/common/model/api.request';
 
 @Controller('auth')
 export class AuthController {
@@ -46,5 +48,28 @@ export class AuthController {
     });
 
     return new StatusResponse(HttpStatus.OK, ResultStatus.SUCCESS);
+  }
+
+  /**
+   * 회원의 로그아웃 API
+   *
+   * API는 사용자가 로그아웃하는 기능을 제공
+   * 로그아웃 성공 시 쿠키제거
+   *
+   * */
+  @UseGuards(AuthGuard('jwt'))
+  @core.TypedRoute.Get('logout')
+  async logout(
+    @Req() req: RequestWithUser,
+    @Res()
+    res: Response,
+  ) {
+    res.clearCookie('accessToken', {
+      httpOnly: true,
+      signed: true,
+      secure: true,
+      sameSite: 'none',
+    });
+    return res.json(new StatusResponse(HttpStatus.OK, ResultStatus.SUCCESS));
   }
 }

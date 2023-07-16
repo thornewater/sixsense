@@ -1,5 +1,4 @@
 import { Carts } from 'src/common/entity/carts.entity';
-import typia from 'typia';
 
 type RenameKey<T, OldKey extends keyof T, NewKey extends string> = Pick<
   T,

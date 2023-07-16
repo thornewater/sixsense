@@ -8,4 +8,5 @@ export class InternalServerError extends HttpException {
 
 export enum InternalServerMessage {
   DATABASE_ERROR = 'SQL ERROR',
+  NOT_CLEAR_COOKIE = '로그아웃실패',
 }
