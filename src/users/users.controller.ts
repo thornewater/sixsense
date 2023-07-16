@@ -1,6 +1,6 @@
 import { Controller, HttpStatus } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserReqDto, checkCreateUserDto } from './dto/user.dto';
+import { CreateUserReqDto } from './dto/user.dto';
 import { TypedBody, TypedRoute } from '@nestia/core';
 import { StatusResponse, ResultStatus } from 'src/common/model/api.response';
 import { LoggerService } from 'src/common/logger/logger.service';
@@ -33,8 +33,6 @@ export class UsersController {
    */
   @TypedRoute.Post()
   async create(@TypedBody() createUserDto: CreateUserReqDto) {
-    checkCreateUserDto(createUserDto);
-
     await this.usersService.create(createUserDto);
 
     return new StatusResponse(HttpStatus.CREATED, ResultStatus.SUCCESS);

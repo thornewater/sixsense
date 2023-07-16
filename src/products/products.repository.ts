@@ -48,8 +48,7 @@ export class ProductsRepository {
         categoryId: categoryIds,
       });
     }
-    const result = await query.getMany();
-    console.log(result);
+
     return query.getMany();
   }
 

@@ -30,7 +30,7 @@
          *   - "equals": Use typia.equals() function
          *   - "validateEquals": Use typia.validateEquals() function
          */
-        "validate": "assert",
+        "validate": "assertEquals",
         /**
          * Validate JSON typed response body.
          *
@@ -40,7 +40,7 @@
          *   - "stringify": Use typia.stringify() function, but dangerous
          *   - null: Just use JSON.stringify() function, without boosting
          */
-        "stringify": "assert"
+        "stringify": "assertEquals"
       },
       {
         "transform": "typia/lib/transform"

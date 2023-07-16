@@ -41,9 +41,12 @@ export class ProductsController {
   @core.TypedRoute.Get()
   async findProductList(@core.TypedQuery() productFilter: ProductFilterDto) {
     checkProductFilterDto(productFilter);
-    console.log(productFilter);
 
-    productFilter.limit = 10;
+    const DEFAULT_LIMIT = 10;
+    const DEFAULT_OFFSET = 0;
+
+    productFilter.limit = productFilter.limit || DEFAULT_LIMIT;
+    productFilter.offset = productFilter.offset || DEFAULT_OFFSET;
 
     const result: Products = await this.productsService.findProductList(
       productFilter,

@@ -15,8 +15,6 @@ export type UpdatedCartDto = RenameKey<
 >;
 export type CartDeleteDto = CartIdListDto;
 
-export const validateNewCartDto = typia.createAssertEquals<NewCartDto>();
-
 export interface CartIdListDto {
   cartIdList: string[];
 }

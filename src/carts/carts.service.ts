@@ -63,7 +63,7 @@ export class CartsService {
   private transformCartItems(cartItems: CartRaw): Carts {
     return cartItems.map((cart) => ({
       ...cart,
-      cartQuantity: Number(cart.cartQuantity),
+      productQuantity: Number(cart.productQuantity),
       productPrice: Number(cart.productPrice),
       discountedPrice: Number(cart.discountedPrice),
       discountRate: Number(cart.productDiscountRate),

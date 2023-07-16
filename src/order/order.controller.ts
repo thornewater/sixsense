@@ -1,7 +1,7 @@
 import { Controller, HttpStatus, Req, UseGuards } from '@nestjs/common';
 import { OrderService } from './order.service';
 import core from '@nestia/core';
-import { CreateOrderReqDto, checkCreateOrderReqDto } from './dto/order.dto';
+import { CreateOrderReqDto } from './dto/order.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { RequestWithUser } from 'src/common/model/api.request';
 import { ResultStatus, StatusResponse } from 'src/common/model/api.response';
@@ -37,8 +37,6 @@ export class OrderController {
     @core.TypedBody() createOrderReqDto: CreateOrderReqDto,
     @Req() req: RequestWithUser,
   ) {
-    checkCreateOrderReqDto(createOrderReqDto);
-
     const user = req.user;
 
     await this.orderService.create(user, createOrderReqDto);

@@ -12,7 +12,11 @@ async function bootstrap() {
     logger: WinstonModule.createLogger(winstonConfig),
   });
 
+  const origin = process.env.ORIGIN_SITE || 'http://localhost:3000';
+
   app.enableCors({
+    origin: [origin],
+    credentials: true,
     methods: 'POST,GET,PUT,PATCH,DELETE,OPTIONS',
   });
 

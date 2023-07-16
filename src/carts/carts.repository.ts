@@ -64,7 +64,7 @@ export class CartsRepository {
       .select([
         'carts.id AS cartId',
         'carts.product_id AS productId',
-        'carts.quantity AS cartQuantity',
+        'carts.quantity AS productQuantity',
         'products.name AS productName',
         'products.price AS productPrice',
         'products.discount_rate AS productDiscountRate',

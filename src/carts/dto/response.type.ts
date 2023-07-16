@@ -1,6 +1,6 @@
 export type CartRaw = {
   cartId: number;
-  cartQuantity: string;
+  productQuantity: string;
   productId: number;
   productName: string;
   productPrice: string;
@@ -30,7 +30,7 @@ export type Carts = {
    *
    * @type int
    */
-  cartQuantity: number;
+  productQuantity: number;
 
   /**
    * 카트에 담김 상품의 이름

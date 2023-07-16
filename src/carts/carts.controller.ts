@@ -1,12 +1,7 @@
 import { Controller, UseGuards, Req, HttpStatus } from '@nestjs/common';
 import { CartsService } from './carts.service';
 import core from '@nestia/core';
-import {
-  CartDeleteDto,
-  NewCartDto,
-  UpdatedCartDto,
-  validateNewCartDto,
-} from './dto/cart.dto';
+import { CartDeleteDto, NewCartDto, UpdatedCartDto } from './dto/cart.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { RequestWithUser } from 'src/common/model/api.request';
 import {
@@ -46,8 +41,6 @@ export class CartsController {
     @core.TypedBody() createCartDto: NewCartDto,
     @Req() req: RequestWithUser,
   ) {
-    validateNewCartDto(createCartDto);
-
     const userId = req.user.id;
 
     await this.cartsService.create(createCartDto, userId);

@@ -1,8 +1,5 @@
 import typia from 'typia';
 
-export const checkCreateOrderReqDto =
-  typia.createAssertEquals<CreateOrderReqDto>();
-
 interface CartItem {
   /**
    * 카트의 PK값
